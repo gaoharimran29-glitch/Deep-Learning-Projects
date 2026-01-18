@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Digit Recognition</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #f0f8ff);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: #008b9e;
+            margin-bottom: 15px;
+        }
+
+        .description-box {
+            background-color: #f1fafa;
+            border-left: 5px solid #00acc1;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            border-radius: 6px;
+        }
+
+        .disclaimer {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #d84315;
+            font-style: italic;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px dashed #bbb;
+            background: #fafafa;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="file"]:hover {
+            border-color: #00acc1;
+            background: #e0f7fa;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+            background: linear-gradient(135deg, #00acc1, #008b9e);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0f7fa;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .digit {
+            font-size: 22px;
+            font-weight: bold;
+            color: #006064;
+        }
+
+        .confidence {
+            margin-top: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #008b9e;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #00acc1;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <fieldset>
+            <legend>Digit Recognition</legend>
+
+            <div class="description-box">
+                This model recognizes handwritten digits (0–9) by learning the stroke patterns and shapes 
+                from the MNIST dataset. It demonstrates how neural networks interpret spatial and visual data.
+                <span class="disclaimer">
+                    Note: Blurry or unusual handwriting may reduce accuracy.
+                </span>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                <label>Upload a digit image</label>
+                <input type="file" name="file" accept="image/*" required>
+
+                <button type="submit">Predict Digit</button>
+            </form>
+
+            {% if digit %}
+                <div class="result-box">
+                    <div class="digit">Predicted Digit: {{ digit }}</div>
+                    <div class="confidence">Confidence: {{ confidence }}</div>
+                </div>
+            {% endif %}
+
+            <a href="/">← Back to Home</a>
+        </fieldset>
+    </div>
+</body>
+</html>

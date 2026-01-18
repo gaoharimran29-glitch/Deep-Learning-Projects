@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 440px;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: #ef6c00;
+            margin-bottom: 15px;
+        }
+
+        .description-box {
+            background-color: #fff8f0;
+            border-left: 5px solid #ffb74d;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            border-radius: 6px;
+        }
+
+        .disclaimer {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #d84315;
+            font-style: italic;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        textarea {
+            width: 100%;
+            height: 130px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            resize: none;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ffb74d;
+            box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.25);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffb74d, #ffa726);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 14px;
+            background: #fff3e0;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .prediction {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ef6c00;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #ffb74d;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <fieldset>
+            <legend>Sentiment Analysis</legend>
+
+            <div class="description-box">
+                This model analyzes movie reviews to determine whether the sentiment is 
+                <strong>positive</strong> or <strong>negative</strong>. Using an LSTM-based neural network, 
+                it understands word context rather than relying only on keywords.
+                <span class="disclaimer">
+                    Note: Sarcasm and mixed emotions may sometimes confuse the model.
+                </span>
+            </div>
+
+            <form method="POST">
+                <label>Movie Review</label>
+                <textarea name="review" placeholder="Write your movie review here..." required></textarea>
+
+                <button type="submit">Predict Sentiment</button>
+            </form>
+
+            {% if prediction %}
+                <div class="result-box">
+                    <div class="prediction">{{ prediction }}</div>
+                </div>
+            {% endif %}
+
+            <a href="/">← Back to Home</a>
+        </fieldset>
+    </div>
+</body>
+</html>

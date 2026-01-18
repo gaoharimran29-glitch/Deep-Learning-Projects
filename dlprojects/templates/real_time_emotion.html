@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Emotion Detection</title>
+    <style>
+        body { text-align: center; font-family: Arial; background: #111; color: #fff; }
+        video { border-radius: 10px; }
+        h1 { color: #00ffcc; }
+    </style>
+</head>
+<body>
+
+<h1>Real-Time Emotion Detection</h1>
+<div class="description-box">
+<video id="video" width="400" autoplay></video>
+<canvas id="canvas" width="224" height="224" hidden></canvas>
+<h2 id="emotion">Detecting...</h2>
+
+<script>
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => video.srcObject = stream);
+
+setInterval(() => {
+    ctx.drawImage(video, 0, 0, 224, 224);
+    canvas.toBlob(blob => {
+        const formData = new FormData();
+        formData.append('image', blob);
+
+        fetch('/predict', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('emotion').innerText =
+                `${data.emotion} (${(data.confidence*100).toFixed(1)}%)`;
+        });
+    });
+}, 1500);
+</script>
+
+</body>
+</html>

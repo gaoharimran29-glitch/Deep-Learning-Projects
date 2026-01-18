@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff3e0, #f9f9f9);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .description-box {
+            background-color: #fff7ed;
+            border-left: 5px solid #fb8c00;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            border-radius: 6px;
+        }
+
+        .disclaimer {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #d84315;
+            font-style: italic;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin: 12px 0 6px;
+            color: #444;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            resize: none;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #fb8c00;
+            box-shadow: 0 0 0 3px rgba(251, 140, 0, 0.2);
+        }
+
+        .title-box {
+            height: 70px;
+        }
+
+        .news-box {
+            height: 130px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+            background: linear-gradient(135deg, #fb8c00, #ef6c00);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 14px;
+            background: #fff3e0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #e65100;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fb8c00;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <fieldset>
+            <legend>Fake News Detector</legend>
+
+            <div class="description-box">
+                This application detects misinformation by analyzing the writing style, wording patterns, 
+                and structure of news articles. It identifies sensational language often found in fake or 
+                clickbait news.
+                <span class="disclaimer">
+                    Note: Satire and very recent news events may sometimes be misclassified.
+                </span>
+            </div>
+
+            <form method="POST">
+                <label>News Title</label>
+                <textarea class="title-box" name="title" placeholder="Enter the news headline..." required></textarea>
+
+                <label>News Content</label>
+                <textarea class="news-box" name="text" placeholder="Paste the full news article here..." required></textarea>
+
+                <button type="submit">Detect News</button>
+            </form>
+
+            {% if prediction %}
+                <div class="result">{{ prediction }}</div>
+            {% endif %}
+
+            <a href="/">← Back to Home</a>
+        </fieldset>
+    </div>
+</body>
+</html>

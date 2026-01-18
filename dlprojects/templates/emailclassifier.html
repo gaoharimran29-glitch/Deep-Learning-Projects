@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Classification Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #f9f9f9);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .description-box {
+            background-color: #f1fafa;
+            border-left: 5px solid #26a69a;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            border-radius: 6px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        textarea {
+            width: 100%;
+            height: 130px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            resize: none;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #26a69a;
+            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.15);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+            background: linear-gradient(135deg, #26a69a, #1e8e86);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 12px;
+            background: #e6fffa;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e8e86;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #26a69a;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <fieldset>
+            <legend>Email Classification</legend>
+
+            <div class="description-box">
+                This project uses Natural Language Processing (NLP) techniques to analyze email content 
+                and classify messages as <strong>Spam</strong> or <strong>Ham</strong> (legitimate). 
+                The model identifies patterns, keywords, and linguistic features to help protect users 
+                from unwanted or harmful emails.
+            </div>
+
+            <form method="POST">
+                <label>Enter email content</label>
+                <textarea name="email" placeholder="Paste your email text here..." required></textarea>
+                <button type="submit">Check Email</button>
+            </form>
+
+            {% if prediction %}
+                <div class="result">{{ prediction }}</div>
+            {% endif %}
+
+            <a href="/">← Back to Home</a>
+        </fieldset>
+    </div>
+</body>
+</html>

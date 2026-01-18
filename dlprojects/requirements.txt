@@ -1,0 +1,12 @@
+flask
+flask-cors
+tensorflow==2.20.0
+numpy
+pandas
+scikit-learn
+joblib
+pickle-mixin
+nltk
+pillow
+opencv-python
+gunicorn
