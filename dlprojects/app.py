@@ -135,7 +135,7 @@ def emailclassfier():
                 probability = model.predict_proba([email])[0]
                 label = "SPAM 🚫" if prediction==1 else "HAM ✅"
                 confidence = f"{probability[prediction]*100:.2f}%"
-                prediction = f"{label} (Confidence: {confidence})"
+                prediction = f"{label} (Score: {confidence})"
 
         except Exception as e:
             prediction = f"Error: {e}"
@@ -165,7 +165,7 @@ def fakenewsclassifier():
             else:
                 score = model.predict(padded)[0][0]
                 label = "Real news" if score<=0.5 else "Fake News"
-                prediction = f"{label} (Confidence: {score})"
+                prediction = f"{label} (Score: {score})"
 
         except Exception as e:
             prediction = f"Error: {e}"
@@ -189,7 +189,7 @@ def dogvscatclassifier():
 
             score = model.predict(img_array)[0][0]
             label = "It is a cat 🐱" if score<=0.5 else "It is a dog 🐶"
-            prediction = f"{label} (Confidence: {score})"
+            prediction = f"{label} (Score: {score})"
 
     except Exception as e:
         prediction = f"Error: {e}"
@@ -212,7 +212,7 @@ def maskvswithmaskclassifier():
 
             score = model.predict(img_array)[0][0]
             label = "Yes there is mask in image 😷" if score<=0.5 else "No there is no mask"
-            prediction = f"{label} (Confidence: {score})"
+            prediction = f"{label} (Score: {score})"
 
     except Exception as e:
         prediction = f"Error: {e}"
@@ -255,7 +255,7 @@ def sentimentanalysis():
             padded = pad_sequences(seq, maxlen=150, padding="post")
             score = model.predict(padded)[0][0]
             label = "Positive" if score>=0.5 else "Negative"
-            prediction = f"{label} (Confidence: {score})"
+            prediction = f"{label} (Score: {score})"
     except Exception as e:
         prediction=f"Error: {e}"
     return render_template('sentimentanalysis.html' , prediction=prediction)
