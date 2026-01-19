@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import joblib
 import re
+import nltk
 import tensorflow as tf
 import pickle
 from nltk.tokenize import word_tokenize
@@ -14,6 +15,11 @@ from nltk.corpus import stopwords
 import cv2
 from flask_cors import CORS
 from tensorflow.keras.applications.resnet50 import preprocess_input
+
+nltk.download('stopwords')
+nltk.download('punkt_tab')
+nltk.download('punkt')
+
 
 models = {
     'emailclassifier':{
