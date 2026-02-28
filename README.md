@@ -5,6 +5,7 @@ A collection of **Deep Learning & Machine Learning projects** covering **Natural
 This repository demonstrates the **complete machine learning lifecycle** — from data preprocessing and model training to **production-level cloud deployment**.
 
 ---
+![image](1768847734356.jpg)
 
 ## Live Deployment
 
