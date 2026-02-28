@@ -11,7 +11,7 @@ This repository demonstrates the **complete machine learning lifecycle** — fro
 
 All projects are deployed on a **Linux-based AWS EC2 instance**, served via **Nginx** as a reverse proxy, and connected to a custom domain using **AWS Route 53**.
 
-- **Live Demo:**:- https://imranx.dpdns.org/
+- **Live Demo:**:- https://imranx.dpdns.org/ ( Site down now due to AWS Billing issue , Run it locally )
 
 ---
 
